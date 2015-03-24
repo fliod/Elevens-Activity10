@@ -47,12 +47,18 @@ public class ThirteensBoard extends Board {
   *         false otherwise.
   */
  @Override
- public boolean isLegal(List<Integer> selectedCards) {
-  if (selectedCards.size() == 2) {
+ public boolean isLegal(List<Integer> selectedCards) 
+ {
+  if (selectedCards.size() == 2) 
+  {
    return containsPairSum13(selectedCards);
-  } else if (selectedCards.size() == 1) {
+  } 
+  else if (selectedCards.size() == 1) 
+  {
    return containsK(selectedCards);
-  } else {
+  }
+  else 
+  {
    return false;
   }
  }
@@ -66,7 +72,8 @@ public class ThirteensBoard extends Board {
   *         false otherwise.
   */
  @Override
- public boolean anotherPlayIsPossible() {
+ public boolean anotherPlayIsPossible()
+ {
   List<Integer> cIndexes = cardIndexes();
   return containsPairSum13(cIndexes) || containsK(cIndexes);
  }
@@ -79,12 +86,16 @@ public class ThirteensBoard extends Board {
   * @return true if the board entries in selectedCards
   *              contain an 11-pair; false otherwise.
   */
- private boolean containsPairSum13(List<Integer> selectedCards) {
-  for (int sk1 = 0; sk1 < selectedCards.size(); sk1++) {
-   int k1 = selectedCards.get(sk1).intValue();
-   for (int sk2 = sk1 + 1; sk2 < selectedCards.size(); sk2++) {
-    int k2 = selectedCards.get(sk2).intValue();
-    if (cardAt(k1).pointValue() + cardAt(k2).pointValue() == 13) {
+ private boolean containsPairSum13(List<Integer> selectedCards) 
+ {
+  for (int xy = 0; xy < selectedCards.size(); xy++) 
+  {
+   int x = selectedCards.get(xy).intValue();
+   for (int yx = xy + 1; yx < selectedCards.size(); yx++) 
+   {
+    int y = selectedCards.get(yx).intValue();
+    if (cardAt(x).pointValue() + cardAt(y).pointValue() == 13)
+    {
      return true;
     }
    }
@@ -101,13 +112,15 @@ public class ThirteensBoard extends Board {
   *              include a jack, a queen, and a king; false otherwise.
   */
  private boolean containsK(List<Integer> selectedCards) {
-  boolean foundKing = false;
-  for (Integer kObj : selectedCards) {
-   int k = kObj.intValue(); 
-  if (cardAt(k).rank().equals("king")) {
-    foundKing = true;
+  boolean findk = false;
+  for (Integer kObj : selectedCards) 
+  {
+   int x = kObj.intValue(); 
+  if (cardAt(x).rank().equals("king")) 
+  {
+    findk = true;
    }
   }
-  return foundKing;
+  return findk;
  }
 }
